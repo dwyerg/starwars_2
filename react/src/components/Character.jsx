@@ -50,8 +50,9 @@ const Character = (props) => {
                 {filmdata.map((film) => (
                     <Link to={`/films/${film.id}`}><div key={film.id} div className="card-text"  style={{backgroundColor:'lightblue', borderRadius:'20px', margin:'20px' }}>{film.title}</div></Link>
                 ))}
-
-                    <div className="card-text"  style={{backgroundColor:'lightblue', borderRadius:'20px', margin:'20px' }}>Planet: {planetdata.name}</div>
+                <Link to={`/planets/${planetdata.id}`}>
+                <div className="card-text"  style={{backgroundColor:'lightblue', borderRadius:'20px', margin:'20px' }}>Planet: {planetdata.name}</div>
+                </Link>
             </div>
         </div>
     );

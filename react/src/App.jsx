@@ -5,6 +5,7 @@ import './App.css'
 import Home from "./components/Home";
 import CharacterList from './components/CharacterList';
 import Character from "./components/Character";
+import Planet from "./components/Planet";
 import Film from "./components/Film"
 import {
   BrowserRouter as Router,
@@ -61,6 +62,7 @@ function App() {
             <div className="row">
             
             <Routes>
+                    <Route exact path="/planets/:id" element={<Planet data={data} />} />
                     <Route exact path="/" element={<Home data={data} />} />
                     <Route exact path="/characters/:id" element={<Character data={data} />} />
                     <Route exact path="/films/:id" element={<Film data={data} />} />

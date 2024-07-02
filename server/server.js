@@ -4,7 +4,6 @@ import cors from 'cors';
 import express from 'express'
 
 const app = express();
-const PORT = 3000;
 app.use(cors());
 dotenv.config();
 const url = process.env.MONGO_DB_URL;
@@ -135,7 +134,9 @@ app.get('/api/planets/:id/characters', async (req, res) => {
               } 
               catch (err) { 
                 res.status(500).json({ message: err.message }); 
-              } });      
+              } });   
+app.use(express.static('./public'));  
+const PORT=3000;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });

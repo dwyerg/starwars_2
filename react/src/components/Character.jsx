@@ -1,6 +1,12 @@
 
 import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
+import {
+    BrowserRouter as Router,
+    Route,
+    Routes,
+    Link
+  } from "react-router-dom";
 const Character = (props) => {
     const [data, setData] = useState(null);
     const [planetdata, setPlanetData] = useState(null);
@@ -42,9 +48,10 @@ const Character = (props) => {
                 <div className="card-text">Born: {data.birth_year}</div>
                 <div className="card-text">Films: </div>
                 {filmdata.map((film) => (
-                    <div key={film.id} div className="card-text"  style={{backgroundColor:'lightblue', borderRadius:'20px', margin:'20px' }}>{film.title}</div>
+                    <Link to={`/films/${film.id}`}><div key={film.id} div className="card-text"  style={{backgroundColor:'lightblue', borderRadius:'20px', margin:'20px' }}>{film.title}</div></Link>
                 ))}
-                <div className="card-text"  style={{backgroundColor:'lightblue', borderRadius:'20px', margin:'20px' }}>Planet: {planetdata.name}</div>
+
+                    <div className="card-text"  style={{backgroundColor:'lightblue', borderRadius:'20px', margin:'20px' }}>Planet: {planetdata.name}</div>
             </div>
         </div>
     );

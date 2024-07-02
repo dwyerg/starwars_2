@@ -5,6 +5,7 @@ import './App.css'
 import Home from "./components/Home";
 import CharacterList from './components/CharacterList';
 import Character from "./components/Character";
+import Film from "./components/Film"
 import {
   BrowserRouter as Router,
   Route,
@@ -62,6 +63,7 @@ function App() {
             <Routes>
                     <Route exact path="/" element={<Home data={data} />} />
                     <Route exact path="/characters/:id" element={<Character data={data} />} />
+                    <Route exact path="/films/:id" element={<Film data={data} />} />
             </Routes>
 
               <footer className={import.meta.env.VITE_ENVIRONMENT === "development" ? "bg-yellow" : import.meta.env.VITE_ENVIRONMENT === "production" ? "bg-green" : ""}>

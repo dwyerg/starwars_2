@@ -7,27 +7,27 @@ import {
     Routes,
     Link
   } from "react-router-dom";
-const Character = (props) => {
+const Planet = (props) => {
     const [data, setData] = useState(null);
-    const [planetdata, setPlanetData] = useState(null);
+    const [ chardata, setCharData] = useState(null);
     const [filmdata, setFilmData] = useState(null);
   const params = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const fresponse = await fetch(`${import.meta.env.VITE_CHARACTERS_API_URL}/${params.id}/films`);
-        const presponse = await fetch(`${import.meta.env.VITE_PLANETS_API_URL}/${params.id}`);
-        const response = await fetch(`${import.meta.env.VITE_CHARACTERS_API_URL}/${params.id}`);
+        const fresponse = await fetch(`${import.meta.env.VITE_PLANETS_API_URL}/${params.id}/films`);
+        const cresponse = await fetch(`${import.meta.env.VITE_PLANETS_API_URL}/${params.id}/characters`);
+        const response = await fetch(`${import.meta.env.VITE_PLANETS_API_URL}/${params.id}`);
         if (!response.ok) {
           throw new Error('Data could not be fetched!');
         }
         const json_response = await response.json();
         const fjson_response = await fresponse.json();
-        const pjson_response = await presponse.json();
+        const cjson_response = await cresponse.json();
         setData(json_response);
         setFilmData(fjson_response);
-        setPlanetData(pjson_response);
+        setCharData(cjson_response);
       } catch (error) {
         console.error('Error fetching characters:', error);
       }
@@ -43,19 +43,24 @@ const Character = (props) => {
         <div className="card card-background" style={{ flex: '1', minWidth: '300px', maxWidth: '45%' }}>
             <div className="card-body">
                 <div className="card-text">{data.name}</div>
-                <div className="card-text">Height: {data.height}</div>
-                <div className="card-text">Mass: {data.mass}</div>
-                <div className="card-text">Born: {data.birth_year}</div>
+                <div className="card-text">Climate: {data.climate}</div>
+                <div className="card-text">Diameter: {data.diameter}</div>
+                <div className="card-text">Population: {data.population}</div>
                 <div className="card-text">Films: </div>
                 {filmdata.map((film) => (
+                    <Link to={`/films/${film.id}`}>
                     <div key={film.id} div className="card-text"  style={{backgroundColor:'lightblue', borderRadius:'20px', margin:'20px' }}>{film.title}</div>
+                    </Link>
                 ))}
-                <Link to={`/planets/${planetdata.id}`}>
-                <div className="card-text"  style={{backgroundColor:'lightblue', borderRadius:'20px', margin:'20px' }}>Planet: {planetdata.name}</div>
-                </Link>
+                <div className="card-text">Characters: </div>
+                {chardata.map((char) => (
+                    <Link to={`/characters/${char.id}`}>
+                    <div key={char.id} div className="card-text"  style={{backgroundColor:'lightblue', borderRadius:'20px', margin:'20px' }}>{char.name}</div>
+                    </Link>
+                ))}
             </div>
         </div>
     );
 };
 
-export default Character;
+export default Planet;

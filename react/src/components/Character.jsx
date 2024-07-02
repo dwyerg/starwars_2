@@ -42,9 +42,9 @@ const Character = (props) => {
                 <div className="card-text">Born: {data.birth_year}</div>
                 <div className="card-text">Films: </div>
                 {filmdata.map((film) => (
-                    <div key={film.id} div className="card-text">{film.title}</div>
+                    <div key={film.id} div className="card-text"  style={{backgroundColor:'lightblue', borderRadius:'20px', margin:'20px' }}>{film.title}</div>
                 ))}
-                <div className="card-text">Planet: {planetdata.name}</div>
+                <div className="card-text"  style={{backgroundColor:'lightblue', borderRadius:'20px', margin:'20px' }}>Planet: {planetdata.name}</div>
             </div>
         </div>
     );
